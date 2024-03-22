@@ -8,7 +8,7 @@
 psql -h localhost -p 5432 -U mario -d todos
 ```
 
-## using flask shell
+## using flask shell locally
 
 1. First, make sure your Flask application is running using Docker Compose.
 
@@ -78,7 +78,40 @@ flask db upgrade
 flask db upgrade
 ```
 
+## Using flask migrate on the deployed Heroku PSQL
+
+Once PSQL is added to the Heroku application, you need to upgrade it with the latest version. This is done by using the following command which created a one off dyno and then uses flask migrate.
+
+```bash
+heroku run flask db upgrade
+```
+
+## Access flask shell to update DB directly
+
+This was good practice to access the app shell and manipulate the database directly and add some todos. Use the following command to access the heroku deployed app shell
+
+```bash
+heroku run flask shell
+```
+
+We can then write some code to seed the Todo table with some data
+
+```python
+from app import db, Todo
+one = Todo(completed=True, description="Singed up for Xtra-clubs", owner="Mario")
+two = Todo(completed=True, description="Be weird and cute", owner="Coda")
+three = Todo(completed=True, description="Be an awesome person and cute", owner="Ali")
+db.session.add_all([one, two, three])
+db.session.commit()
+```
+
+The database now has 3 records and this shows up at the `/todos` route.
+
 ## links
 
 - https://www.digitalocean.com/community/tutorials/how-to-perform-flask-sqlalchemy-migrations-using-flask-migrate
 - https://dev.to/yactouat/flask-postgres-sqlalchemy-migrations-dockerized-intro-2f8p
+
+```
+
+```
