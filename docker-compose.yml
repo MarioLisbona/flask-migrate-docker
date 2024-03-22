@@ -1,30 +1,30 @@
-# creating a volume to be able to persist data between Postgres container restarts
-volumes:
-  todos-vol:
+version: "3.8"
 
 services:
   pgsql:
     image: postgres:14
     restart: always
     environment:
-      POSTGRES_PASSWORD: password # environment variable that sets the superuser password for PostgreSQL
-      POSTGRES_USER: mario # variable that will create the specified user
-      POSTGRES_DB: todos # the name of your db
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: mario
+      POSTGRES_DB: todos
     volumes:
       - todos-vol:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   python:
-    # we are not going to use the Python image as is but rather tweak one to our needs
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile
+    build: .
     depends_on:
       - pgsql
-    # using port 80 for convenience so we can access localhost directly without specifying the port
     ports:
-      - 5007:5007
-    # the Flask app' code will go into the `app` folder of your project and be mapped to `/usr/src/app` in the container
+      - "5007:5007"
     volumes:
-      - ./app:/usr/src/app
+      - .:/usr/src/app
+    environment:
+      FLASK_APP: app.py
+      FLASK_DEBUG: "true"
+      FLASK_ENV: development
+
+volumes:
+  todos-vol:
