@@ -45,7 +45,7 @@ docker compose up
 2. Access the terminal for your Python container
 
 ```bash
-docker-compose exec python sh
+docker compose exec python sh
 ```
 
 1. You are now within the container's shell session. You can setup Flask-Migrate and add support for your current project with the following command
