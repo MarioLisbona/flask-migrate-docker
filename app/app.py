@@ -1,9 +1,13 @@
 from init import app, db
 from flask_migrate import Migrate
+import os
+from flask import jsonify
 
 # bootstrap database migrate commands
 db.init_app(app)
 migrate = Migrate(app, db)
+
+print('This is data from the .env file\n', os.environ['TEST_DATA'])
 
 class Todo(db.Model):
     __tablename__ = "todos"
@@ -16,6 +20,22 @@ class Todo(db.Model):
 
     def __repr__(self):
         return f"<Todo {self.id}, {self.completed}, {self.description}>"
+    
+    
+# Route to return all todos
+@app.route('/todos', methods=['GET'])
+def get_todos():
+    todos = Todo.query.all()
+    todo_list = []
+    for todo in todos:
+        todo_list.append({
+            'id': todo.id,
+            'completed': todo.completed,
+            'description': todo.description,
+            'due_date': todo.due_date.isoformat() if todo.due_date else None,
+            'owner': todo.owner
+        })
+    return jsonify(todo_list)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
