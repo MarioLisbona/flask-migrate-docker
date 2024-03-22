@@ -24,7 +24,7 @@ services:
       - pgsql
     # using port 80 for convenience so we can access localhost directly without specifying the port
     ports:
-      - 80:5000
+      - 5007:5007
     # the Flask app' code will go into the `app` folder of your project and be mapped to `/usr/src/app` in the container
     volumes:
       - ./app:/usr/src/app
