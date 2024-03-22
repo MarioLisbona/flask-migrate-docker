@@ -11,7 +11,8 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "some_dev_key"
 # Check if running on Heroku
 if 'DATABASE_URL' in os.environ:
-  app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+  app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL').replace(
+        'postgres://', 'postgresql+psycopg2://', 1)
 else:
   # Local PostgreSQL database URL
   app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['LOCAL_DATABASE']
