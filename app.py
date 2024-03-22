@@ -58,7 +58,7 @@ def home():
         "msg": "Welcome"
     })
 
-@app.route("/api", methods=["GET"])
+@app.route("/message", methods=["GET"])
 def get_api_base_url():
     return jsonify({
         "msg": "todos api is up",
