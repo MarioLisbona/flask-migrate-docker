@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from routes import init_routes
 import os
 
 # creates an application that is named after the name of the file
@@ -13,9 +12,6 @@ if 'DATABASE_URL' in os.environ:
 else:
   # Local PostgreSQL database URL
   app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['LOCAL_DATABASE']
-
-# initializing routes
-init_routes(app)
 
 db = SQLAlchemy()
 

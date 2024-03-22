@@ -21,7 +21,7 @@ class Todo(db.Model):
     def __repr__(self):
         return f"<Todo {self.id}, {self.completed}, {self.description}>"
     
-    
+
 # Route to return all todos
 @app.route('/todos', methods=['GET'])
 def get_todos():
@@ -36,6 +36,20 @@ def get_todos():
             'owner': todo.owner
         })
     return jsonify(todo_list)
+
+@app.route('/')
+def home():
+    return jsonify({
+        "msg": "Welcome"
+    })
+
+@app.route("/api", methods=["GET"])
+def get_api_base_url():
+    return jsonify({
+        "msg": "todos api is up",
+        "success": True,
+        "data": None
+    }), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
