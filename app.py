@@ -37,14 +37,6 @@ class Todo(db.Model):
         return f"<Todo {self.id}, {self.completed}, {self.description}>"
     
 
-# with app.app_context():
-#     one = Todo(completed=True, description="Singed up for Xtra-clubs", owner="Mario")
-#     two = Todo(completed=True, description="Be werid and cute", owner="Coda")
-#     three = Todo(completed=True, description="Be a beautiful person", owner="Ali")
-
-#     db.session.add_all([one, two, three])
-#     db.session.commit()
-
 # Route to return all todos
 @app.route('/todos', methods=['GET'])
 def get_todos():
@@ -66,7 +58,7 @@ def home():
         "msg": "Welcome"
     })
 
-@app.route("/message", methods=["GET"])
+@app.route("/msg", methods=["GET"])
 def get_api_base_url():
     return jsonify({
         "msg": "todos api is up",
