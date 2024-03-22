@@ -71,3 +71,14 @@ Because our database has not been created yet, this output informs you that a ne
 ```bash
 flask db upgrade
 ```
+
+4. If you delete the containers and rebuild from scratch, once the new containers are up and running, use the following command to initialise the database to its previous state (last migration):
+
+```bash
+flask db upgrade
+```
+
+## links
+
+- https://www.digitalocean.com/community/tutorials/how-to-perform-flask-sqlalchemy-migrations-using-flask-migrate
+- https://dev.to/yactouat/flask-postgres-sqlalchemy-migrations-dockerized-intro-2f8p
