@@ -16,10 +16,9 @@ else:
   # Local PostgreSQL database URL
   app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['LOCAL_DATABASE']
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 # bootstrap database migrate commands
-db.init_app(app)
 migrate = Migrate(app, db)
 
 print('This is data from the .env file\n', os.environ['TEST_DATA'])
