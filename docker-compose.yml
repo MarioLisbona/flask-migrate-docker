@@ -7,7 +7,7 @@ services:
     image: postgres:14
     restart: always
     environment:
-      POSTGRES_PASSWORD: 123 # environment variable that sets the superuser password for PostgreSQL
+      POSTGRES_PASSWORD: password # environment variable that sets the superuser password for PostgreSQL
       POSTGRES_USER: mario # variable that will create the specified user
       POSTGRES_DB: todos # the name of your db
     volumes:
