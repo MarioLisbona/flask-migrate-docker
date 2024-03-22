@@ -14,3 +14,17 @@ services:
       - todos-vol:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  python:
+    # we are not going to use the Python image as is but rather tweak one to our needs
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - pgsql
+    # using port 80 for convenience so we can access localhost directly without specifying the port
+    ports:
+      - 80:5000
+    # the Flask app' code will go into the `app` folder of your project and be mapped to `/usr/src/app` in the container
+    volumes:
+      - ./app:/usr/src/app
