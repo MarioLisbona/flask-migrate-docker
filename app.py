@@ -6,6 +6,8 @@ from controllers.home_controller import home_bp
 from controllers.todo_controller import todo_bp
 from controllers.msg_controller import msg_bp
 
+# Printing env variables.
+# DEBUG and DEVELOPMENT will show True locally and False on production deployment
 print('This is data from the .env file\n', os.environ['TEST_DATA'])
 print("DEBUG ===============> ",app.config['DEBUG'])
 print("DEVELOPMENT =========> ",app.config['DEVELOPMENT'])
@@ -15,9 +17,8 @@ app.register_blueprint(home_bp)
 app.register_blueprint(todo_bp)
 app.register_blueprint(msg_bp)
 
+def local_app():
+    return app
 
-
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0")

@@ -3,7 +3,9 @@ from models.todo import Todo
 
 todo_bp = Blueprint('todo', __name__)
 
-# Route to return all todos
+# ======================================================================================================
+# route to return todo list
+# ======================================================================================================
 @todo_bp.route('/todos', methods=['GET'])
 def get_todos():
     todos = Todo.query.all()
