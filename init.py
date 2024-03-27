@@ -5,8 +5,12 @@ import os
 from flask_migrate import Migrate
 
 
-# # creates an application that is named after the name of the file
+#creates an application that is named after the name of the file
 app = Flask(__name__)
+
+# Set the environment config for the app based on the CONFIG_SETTINGS value. Default is DevelopmentConfig
+env_config = os.getenv("CONFIG_SETTINGS", "config.DevelopmentConfig")
+app.config.from_object(env_config)
 
 app.config["SECRET_KEY"] = "some_dev_key"
 
