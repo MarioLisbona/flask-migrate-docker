@@ -1,24 +1,11 @@
 import os
 from flask import jsonify
 from init import app, db
-import config
+from models.todo import Todo
 
 print('This is data from the .env file\n', os.environ['TEST_DATA'])
 print("DEBUG ===============> ",app.config['DEBUG'])
 print("DEVELOPMENT =========> ",app.config['DEVELOPMENT'])
-
-class Todo(db.Model):
-    __tablename__ = "todos"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    completed = db.Column(db.Boolean, nullable=False, default=False)
-    description = db.Column(db.String(), nullable=False)
-    due_date = db.Column(db.DateTime, nullable=True)
-    owner = db.Column(db.String(), nullable=True)
-
-    def __repr__(self):
-        return f"<Todo {self.id}, {self.completed}, {self.description}>"
-    
 
 # Route to return all todos
 @app.route('/todos', methods=['GET'])
