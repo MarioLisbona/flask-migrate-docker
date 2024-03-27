@@ -12,11 +12,7 @@ app = Flask(__name__)
 env_config = os.getenv("CONFIG_SETTINGS", "config.DevelopmentConfig")
 app.config.from_object(env_config)
 
-app.config["SECRET_KEY"] = "some_dev_key"
-
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL').replace(
-        'postgres://', 'postgresql+psycopg2://', 1)
-
+# Create SQLAlehcmy instance using the flask application app
 db = SQLAlchemy(app)
 
 # bootstrap database migrate commands
