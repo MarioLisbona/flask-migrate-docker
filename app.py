@@ -1,10 +1,10 @@
-from flask_migrate import Migrate
+# from flask_migrate import Migrate
 import os
 from flask import jsonify
 from init import app, db
 
-# bootstrap database migrate commands
-migrate = Migrate(app, db)
+# # bootstrap database migrate commands
+# migrate = Migrate(app, db)
 
 print('This is data from the .env file\n', os.environ['TEST_DATA'])
 
