@@ -1,8 +1,8 @@
-"""Add owner column to Todo
+"""Add owner column for todos model
 
-Revision ID: 5499e99d4226
-Revises: b74c0907858c
-Create Date: 2024-03-22 02:36:16.881105
+Revision ID: 5b5e73d61132
+Revises: 5cc3cd9d6afc
+Create Date: 2024-03-27 11:19:51.801137
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5499e99d4226'
-down_revision = 'b74c0907858c'
+revision = '5b5e73d61132'
+down_revision = '5cc3cd9d6afc'
 branch_labels = None
 depends_on = None
 
