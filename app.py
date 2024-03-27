@@ -1,8 +1,11 @@
 import os
 from flask import jsonify
 from init import app, db
+import config
 
 print('This is data from the .env file\n', os.environ['TEST_DATA'])
+print("DEBUG ===============> ",app.config['DEBUG'])
+print("DEVELOPMENT =========> ",app.config['DEVELOPMENT'])
 
 class Todo(db.Model):
     __tablename__ = "todos"
