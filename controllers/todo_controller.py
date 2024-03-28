@@ -15,7 +15,7 @@ def get_todos():
             'id': todo.id,
             'completed': todo.completed,
             'description': todo.description,
-            # 'due_date': todo.due_date.isoformat() if todo.due_date else None,
+            'due_date': todo.due_date.isoformat() if todo.due_date else None,
             'owner': todo.owner
         })
     return jsonify(todo_list)
